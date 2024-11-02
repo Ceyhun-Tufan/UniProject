@@ -8,9 +8,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("gui.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("sorgu.fxml"));
         primaryStage.setTitle("Veri Yapilari");
-        primaryStage.setScene(new Scene(root, 400, 300));
+        primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.show();
     }
 

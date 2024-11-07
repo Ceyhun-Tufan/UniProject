@@ -7,7 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
 import java.util.ArrayList;
-import TxtHandler.Serializers;
+import TxtHandler.Serializer;
 
 
 // Txt dosya islemlerinde yazma ve okumayi hizlandirmak icin class 

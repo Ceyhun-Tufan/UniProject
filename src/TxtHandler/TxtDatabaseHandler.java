@@ -7,8 +7,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
 import java.util.ArrayList;
-import TxtHandler.Serializer;
-
 
 // Txt dosya islemlerinde yazma ve okumayi hizlandirmak icin class 
 
@@ -33,28 +31,30 @@ import TxtHandler.Serializer;
 //
 // txt dosyanizin yolunu belirler 
 
+// DATABASEIN CALISMA MANTIGI:
+// SIRASIYLA!!!
+// BOOKNAME - WRITER - GENRE - PAGE - WRITTEN YEAR - COUNT
+// yani her zaman String[6]
 
-
-public class TxtDataBase {
+public class TxtDatabaseHandler {
 
     private String path;
-
 
     public boolean setPath(String newpath) {
         path = newpath;
         return checkDb();
     }
 
-    public ArrayList<String> loadData() {
+    public ArrayList<Book> loadData() {
 
         String line;
-        ArrayList<String> data = new ArrayList<String>();
+        ArrayList<String[]> data = new ArrayList<String[]>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
 
             System.out.println("Veriler yukleniyor");
             while ((line = reader.readLine()) != null) {
-                data.add(line);
+                data.add(line.split("-"));
             }
             reader.close();
 
@@ -62,17 +62,21 @@ public class TxtDataBase {
             System.err.println(e);
         }
 
-        return data;
+        return Serialize(data);
 
     }
 
-    public void writeData(ArrayList<String> data) {
+    public void writeData(ArrayList<Book> data) {
+
+
+        ArrayList<String> bookdata = DeSerialize(data);
+        
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
 
-            for (String line : data) {
-                line += "\n";
-                writer.write(line);
+            for (String book : bookdata) {
+                book += "\n";
+                writer.write(book);
             }
 
             writer.close();
@@ -81,6 +85,37 @@ public class TxtDataBase {
             System.err.println(e);
         }
 
+    }
+
+    public ArrayList<Book> Serialize(ArrayList<String[]> datas) {
+
+        String[] line;
+        ArrayList<Book> books = new ArrayList<Book>();
+
+        for (int i = 0; i < datas.size(); i++) {
+            line = datas.get(i);
+
+            books.add(new Book(line[0], line[1], line[2], Integer.valueOf(line[3]), Integer.valueOf(line[4]),
+                    Integer.valueOf(line[5])));
+        }
+
+        return books;
+
+    }
+
+
+    //Book ArrayList indeki verilerin her birini Book clasındaki toString methodu ile Stringe cevirerek
+    // tüm kitap değerlerini bir ArrayList<String> inde döndüren fonksiyon
+    public ArrayList<String> DeSerialize(ArrayList<Book> data) {
+
+        ArrayList<String> bookdata = new ArrayList<String>();
+        
+        for (Book book : data) {
+            bookdata.add(book.toString());
+
+        }
+
+        return bookdata;
     }
 
     private boolean checkDb() {

@@ -1,6 +1,5 @@
-import TxtHandler.TxtDataBase;
+import TxtHandler.TxtDatabaseHandler;
 import TxtHandler.Book;
-import TxtHandler.Serializer;
 
 import java.util.ArrayList;
 import javafx.application.Application;
@@ -25,28 +24,47 @@ import javafx.stage.Stage;
 //     }
 // }
 
+
+// stok ekle sil 
+// aynı kitaptan varsa count arttırma
+// kitap listeleme 
+// yazarlara göre kitap listeleme 
+// türe göre kitap listeleme
+
 public class Main {
 
     public static void main(String[] args) {
-        TxtDataBase handler = new TxtDataBase();
-        Serializer serializer = new Serializer();
+        TxtDatabaseHandler handler = new TxtDatabaseHandler();
 
-        serializer.Serialize();
+        System.out.println();
+        System.out.println();
 
         if(!(handler.setPath("database.txt"))){
             return;
         }
 
-        ArrayList<String> datas = handler.loadData();
-
-        System.out.println(datas);
         
-        datas.add("denem 1 2");
+        ArrayList<Book> books = handler.loadData();
 
-        handler.writeData(datas);
-        System.out.println(handler.loadData());
+        for (Book book : books) {
+            System.out.println(book.toString());            
+        }
+
+        books.add(new Book("Suç Ve Ceza","Dosto","Drama",600,1900,1));
+
+        handler.writeData(books);
+
+        books = handler.loadData();
+
+        System.out.println();
+        System.out.println();
 
         
+        for (Book book : books) {
+            System.out.println(book.toString());            
+        }
+
+
     }
     
 }

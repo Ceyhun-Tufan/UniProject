@@ -39,12 +39,12 @@ public class Main {
         System.out.println();
         System.out.println();
 
-        if(!(handler.setPath("database.txt"))){
+        if(!(handler.setPath("database.txt.kac"))){
             return;
         }
 
         
-        ArrayList<Book> books = handler.loadData();
+        ArrayList<Book> books = handler.fetchData();
 
         for (Book book : books) {
             System.out.println(book.toString());            
@@ -54,7 +54,7 @@ public class Main {
 
         handler.writeData(books);
 
-        books = handler.loadData();
+        books = handler.fetchData();
 
         System.out.println();
         System.out.println();
@@ -66,5 +66,17 @@ public class Main {
 
 
     }
+
+    // buralara search ve filter algoritmalarının fonksiyonları tek tek yazılacak
+    // temel kalıplar ve istenilen returnler
+    // fetch_all - arguman : yok - return: ArrayList<Book>
     
+    // write_all - arguman : ArrayList<Book> - return: boolean ( islem basarılı basarısız )
+    
+    // fetch_single - overload edilmis bir fonksiyon olacak
+    //  overload 1: book id si alır buna göre tek bir kitabı döndürür
+    // 
+
+
 }
+

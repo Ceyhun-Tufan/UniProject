@@ -14,20 +14,20 @@ import java.util.ArrayList;
 //
 // db nin varligini kontrol eder. Duruma gore TF return eder
 
-// loadData() - argumanlar : Yok - return tipi : ArrayList<String>
+// loadData() - argumanlar : Yok - return tipi : ArrayList<Book>
 //
 // txt dosyasindan tum verileri bir ArrayList'ine alir.
 // listedeki tum elemanlari daha oncesinde atanmis #bakiniz setSerializerClass()# 
 // class yapisina gore serializer'dan gecirerek ayni class yapisindan olusan bir liste dondurur
 
-// writeData() - argumanlar : ArrayList<String> ; return tipi : Void
+// writeData() - argumanlar : ArrayList<Book> ; return tipi : Void
 // 
 // parametre olarak belirlenmis class yapisindan olusan bir liste alir.
-// bu listedeki elemanlari mapten gecirerek, map islemini daha farkli yapabilirsiniz, 
+// bu listedeki elemanlari Book un icerisine yazılmıs toString methodu ile 
 // degerleri tek satirlik bir stringe cevirir. daha sonrasinda verileri 
 // txt dosyaniza yazar 
 
-// setPath() - argumanlar : String ; return tipi : Void
+// setPath() - argumanlar : String ; return tipi : boolean
 //
 // txt dosyanizin yolunu belirler 
 
@@ -45,7 +45,9 @@ public class TxtDatabaseHandler {
         return checkDb();
     }
 
-    public ArrayList<Book> loadData() {
+    public ArrayList<Book> fetchData() {
+
+        Book.id_increment = 1;
 
         String line;
         ArrayList<String[]> data = new ArrayList<String[]>();
@@ -95,8 +97,8 @@ public class TxtDatabaseHandler {
         for (int i = 0; i < datas.size(); i++) {
             line = datas.get(i);
 
-            books.add(new Book(line[0], line[1], line[2], Integer.valueOf(line[3]), Integer.valueOf(line[4]),
-                    Integer.valueOf(line[5])));
+            books.add(new Book(line[1], line[2], line[3], Integer.valueOf(line[4]), Integer.valueOf(line[5]),
+                    Integer.valueOf(line[6])));
         }
 
         return books;

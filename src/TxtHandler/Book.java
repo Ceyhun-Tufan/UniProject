@@ -1,7 +1,8 @@
 package TxtHandler;
 
 public class Book {
-
+    static int id_increment = 1; // tum bookları unique sekilde id lemek icin
+    int id;
     String book_name;
     String writer;
     String genre;
@@ -10,6 +11,9 @@ public class Book {
     int count;
 
     public Book(String book_name,String writer,String genre, int page,int written_year, int count){
+        this.id = id_increment;
+        id_increment++;
+
         this.book_name = book_name;
         this.genre = genre;
         this.writer = writer;
@@ -25,7 +29,7 @@ public class Book {
     public String toString() {
 
         String bookstring;
-        bookstring = this.book_name +"-"+ this.writer + "-" + this.genre + "-" + String.valueOf(this.page) +"-"+ String.valueOf(this.written_year) +"-"+String.valueOf(this.count);
+        bookstring = this.id +"-" + this.book_name +"-"+ this.writer + "-" + this.genre + "-" + String.valueOf(this.page) +"-"+ String.valueOf(this.written_year) +"-"+String.valueOf(this.count);
         return bookstring;
     }
 }

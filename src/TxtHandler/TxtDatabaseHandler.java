@@ -36,6 +36,7 @@ import java.util.ArrayList;
 // BOOKNAME - WRITER - GENRE - PAGE - WRITTEN YEAR - COUNT
 // yani her zaman String[6]
 
+
 public class TxtDatabaseHandler {
 
     private String path;
@@ -94,6 +95,7 @@ public class TxtDatabaseHandler {
         String[] line;
         ArrayList<Book> books = new ArrayList<Book>();
 
+
         for (int i = 0; i < datas.size(); i++) {
             line = datas.get(i);
 
@@ -102,6 +104,15 @@ public class TxtDatabaseHandler {
         }
 
         return books;
+
+    }
+
+
+    // serialize single
+    public Book Serialize(String[] data){
+        
+        return new Book(data[1], data[2], data[3], Integer.valueOf(data[4]), Integer.valueOf(data[5]),
+        Integer.valueOf(data[6]));
 
     }
 
@@ -118,6 +129,11 @@ public class TxtDatabaseHandler {
         }
 
         return bookdata;
+    }
+
+
+    public String DeSerialize(Book data){
+        return data.toString();
     }
 
     private boolean checkDb() {

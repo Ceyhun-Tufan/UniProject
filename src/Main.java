@@ -8,21 +8,21 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-// public class Main extends Application {
+public class Main extends Application {
 
-//     @Override
-//     public void start(Stage primaryStage) throws Exception{
-//         Parent root = FXMLLoader.load(getClass().getResource("gui.fxml"));
-//         primaryStage.setTitle("Veri Yapilari");
-//         primaryStage.setScene(new Scene(root, 800, 600));
-//         primaryStage.show();
-//     }
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("./gui.fxml"));
+        primaryStage.setTitle("Veri Yapilari");
+        primaryStage.setScene(new Scene(root, 800, 600));
+        primaryStage.show();
+    }
 
 
-//     public static void main(String[] args) {
-//         launch(args);
-//     }
-// }
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
 
 
 // stok ekle sil 
@@ -31,41 +31,46 @@ import javafx.stage.Stage;
 // yazarlara göre kitap listeleme 
 // türe göre kitap listeleme
 
-public class Main {
+// public class Main {
 
-    public static void main(String[] args) {
-        TxtDatabaseHandler handler = new TxtDatabaseHandler();
+//     public static void main(String[] args) {
+//         TxtDatabaseHandler handler = new TxtDatabaseHandler();
 
-        System.out.println();
-        System.out.println();
+//         System.out.println();
+//         System.out.println();
 
-        if(!(handler.setPath("database.txt.kac"))){
-            return;
-        }
-
-        
-        ArrayList<Book> books = handler.fetchData();
-
-        for (Book book : books) {
-            System.out.println(book.toString());            
-        }
-
-        books.add(new Book("Suç Ve Ceza","Dosto","Drama",600,1900,1));
-
-        handler.writeData(books);
-
-        books = handler.fetchData();
-
-        System.out.println();
-        System.out.println();
+//         if(!(handler.setPath("database.txt.kac"))){
+//             return;
+//         }
 
         
-        for (Book book : books) {
-            System.out.println(book.toString());            
-        }
+//         ArrayList<Book> books = handler.fetchData();
+
+//         for (Book book : books) {
+//             System.out.println(book.toString());            
+//         }
 
 
-    }
+//         books.add(new Book("Suç Ve Ceza","Dosto","Drama",600,1900,1));
+
+//         handler.writeData(books);
+
+//         books = handler.fetchData();
+
+//         System.out.println();
+//         System.out.println();
+
+        
+//         for (Book book : books) {
+//             System.out.println(book.toString());            
+//         }
+
+
+//     }
+
+
+// }
+
 
     // buralara search ve filter algoritmalarının fonksiyonları tek tek yazılacak
     // temel kalıplar ve istenilen returnler
@@ -78,5 +83,5 @@ public class Main {
     // 
 
 
-}
+
 

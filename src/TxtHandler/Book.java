@@ -1,8 +1,8 @@
 package TxtHandler;
 
 public class Book {
-    private static int id_increment = 1; // Tüm kitapları unique şekilde id ilemek için
-    private int id;
+    public static int id_increment = 1; // Tüm kitapları unique şekilde id ilemek için
+    private final int id;
     private String book_name;
     private String writer;
     private String genre;

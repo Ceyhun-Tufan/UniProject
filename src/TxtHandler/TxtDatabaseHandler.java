@@ -2,10 +2,10 @@ package TxtHandler;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.File;
 import java.util.ArrayList;
 
 // Txt dosya islemlerinde yazma ve okumayi hizlandirmak icin class 
@@ -51,7 +51,7 @@ public class TxtDatabaseHandler {
         Book.id_increment = 1;
 
         String line;
-        ArrayList<String[]> data = new ArrayList<String[]>();
+        ArrayList<String[]> data = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
 
@@ -93,14 +93,14 @@ public class TxtDatabaseHandler {
     public ArrayList<Book> Serialize(ArrayList<String[]> datas) {
 
         String[] line;
-        ArrayList<Book> books = new ArrayList<Book>();
+        ArrayList<Book> books = new ArrayList<>();
 
 
         for (int i = 0; i < datas.size(); i++) {
             line = datas.get(i);
 
-            books.add(new Book(line[1], line[2], line[3], Integer.valueOf(line[4]), Integer.valueOf(line[5]),
-                    Integer.valueOf(line[6])));
+            books.add(new Book(line[1], line[2], line[3], Integer.parseInt(line[4]), Integer.parseInt(line[5]),
+                    Integer.parseInt(line[6])));
         }
 
         return books;
@@ -111,8 +111,8 @@ public class TxtDatabaseHandler {
     // serialize single
     public Book Serialize(String[] data){
         
-        return new Book(data[1], data[2], data[3], Integer.valueOf(data[4]), Integer.valueOf(data[5]),
-        Integer.valueOf(data[6]));
+        return new Book(data[1], data[2], data[3], Integer.parseInt(data[4]), Integer.parseInt(data[5]),
+        Integer.parseInt(data[6]));
 
     }
 
@@ -121,7 +121,7 @@ public class TxtDatabaseHandler {
     // tüm kitap değerlerini bir ArrayList<String> inde döndüren fonksiyon
     public ArrayList<String> DeSerialize(ArrayList<Book> data) {
 
-        ArrayList<String> bookdata = new ArrayList<String>();
+        ArrayList<String> bookdata = new ArrayList<>();
         
         for (Book book : data) {
             bookdata.add(book.toString());
@@ -148,7 +148,7 @@ public class TxtDatabaseHandler {
             try {
                 f.createNewFile();
                 return true;
-            } catch (Exception e) {
+            } catch (IOException e) {
                 System.err.println(e);
                 return false;
             }

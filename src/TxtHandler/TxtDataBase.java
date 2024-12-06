@@ -2,13 +2,11 @@ package TxtHandler;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.File;
 import java.util.ArrayList;
-import TxtHandler.Serializers;
-
 
 // Txt dosya islemlerinde yazma ve okumayi hizlandirmak icin class 
 
@@ -48,7 +46,7 @@ public class TxtDataBase {
     public ArrayList<String> loadData() {
 
         String line;
-        ArrayList<String> data = new ArrayList<String>();
+        ArrayList<String> data = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
 
@@ -95,7 +93,7 @@ public class TxtDataBase {
             try {
                 f.createNewFile();
                 return true;
-            } catch (Exception e) {
+            } catch (IOException e) {
                 System.err.println(e);
                 return false;
             }

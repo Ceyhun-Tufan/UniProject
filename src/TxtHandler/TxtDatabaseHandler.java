@@ -117,8 +117,7 @@ public class TxtDatabaseHandler {
     }
 
 
-    //Book ArrayList indeki verilerin her birini Book clasındaki toString methodu ile Stringe cevirerek
-    // tüm kitap değerlerini bir ArrayList<String> inde döndüren fonksiyon
+
     public ArrayList<String> DeSerialize(ArrayList<Book> data) {
 
         ArrayList<String> bookdata = new ArrayList<>();

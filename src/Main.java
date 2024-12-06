@@ -1,29 +1,31 @@
 import TxtHandler.TxtDatabaseHandler;
 import TxtHandler.Book;
 import java.util.ArrayList;
+import CrudHelper.crudHandler;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-;
 
 
-// public class Main extends Application {
 
-//     @Override
-//     public void start(Stage primaryStage) throws Exception{
-//         Parent root = FXMLLoader.load(getClass().getResource("./gui.fxml"));
-//         primaryStage.setTitle("Veri Yapilari");
-//         primaryStage.setScene(new Scene(root, 800, 600));
-//         primaryStage.show();
-//     }
+public class Main extends Application {
+
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("./gui.fxml"));
+        primaryStage.setTitle("Veri Yapilari");
+        primaryStage.setScene(new Scene(root, 800, 600));
+        primaryStage.show();
+    }
 
 
-//     public static void main(String[] args) {
-//         launch(args);
-//     }
-// }
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
 
 
 // stok ekle sil 
@@ -32,42 +34,24 @@ import javafx.stage.Stage;
 // yazarlara göre kitap listeleme 
 // türe göre kitap listeleme
 
-public class Main {
+// public class Main {
 
-    public static void main(String[] args) {
-        TxtDatabaseHandler handler = new TxtDatabaseHandler();
+//     public static void main(String[] args) {
+//         crudHandler crud = new crudHandler();
 
-        System.out.println();
-        System.out.println();
-
-        if(!(handler.setPath("database.txt.kac"))){
-            return;
-        }
-
-        
-        ArrayList<Book> books = handler.fetchData();
-
-        for (Book book : books) {
-            System.out.println(book.toString());            
-        }
+//         System.out.println();
+//         System.out.println();
 
 
-        books.add(new Book("Suç Ve Ceza","Dosto","Drama",600,1900,1));
+//         crud.createBook("Evet isyan", "Ismet Ozel", "Poem", 0, 1, 1);
+//         Book deneme = crud.findByName("Evet isyan");
 
-        handler.writeData(books);
+//         System.out.println(deneme.getBookName());
 
-        books = handler.fetchData();
 
-        System.out.println();
-        System.out.println();
 
         
-        for (Book book : books) {
-            System.out.println(book.toString());            
-        }
+//     }
 
 
-    }
-
-
-}
+// }

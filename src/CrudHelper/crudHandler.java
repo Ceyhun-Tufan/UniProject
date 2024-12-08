@@ -7,8 +7,7 @@ import java.util.ArrayList;
 public class crudHandler {
 
     private ArrayList<Book> book_list;
-    private final TxtDatabaseHandler db; 
-
+    private final TxtDatabaseHandler db;
 
     public crudHandler() {
         this.book_list = new ArrayList<>();
@@ -79,7 +78,7 @@ public class crudHandler {
 
             book_list.remove(book);
             System.out.println("Kitap başarıyla silindi: " + book);
-            syncDb();            
+            syncDb();
             return true;
         }
 
@@ -92,7 +91,7 @@ public class crudHandler {
 
         if (book_list.isEmpty()) {
             System.out.println("Kitap listesi boş");
-        
+
             return null;
         }
 
@@ -104,9 +103,8 @@ public class crudHandler {
 
     }
 
-    private void syncDb(){
+    private void syncDb() {
         db.writeData(book_list);
     }
-
 
 }

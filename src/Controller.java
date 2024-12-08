@@ -1,6 +1,9 @@
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -8,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
@@ -48,7 +52,6 @@ public class Controller {
 
     @FXML
     void initialize() {
-        // Sütunlara veri bağlama
         namecol.setCellValueFactory(new PropertyValueFactory<>("bookName"));
         writercol.setCellValueFactory(new PropertyValueFactory<>("writer"));
         genrecol.setCellValueFactory(new PropertyValueFactory<>("genre"));
@@ -56,7 +59,6 @@ public class Controller {
         yearcol.setCellValueFactory(new PropertyValueFactory<>("writtenYear"));
         stockcol.setCellValueFactory(new PropertyValueFactory<>("count"));
 
-        // Tabloyu doldur
         loadTableData();
     }
 
@@ -78,7 +80,7 @@ public class Controller {
     }
 
     @FXML
-    void searchingEvent(KeyEvent event) {
+    void handleSearchingEvent(KeyEvent event) {
         // finding the related books
 
         ObservableList<Book> bookSearch;
@@ -96,6 +98,38 @@ public class Controller {
 
         bookTableView.setItems(bookSearch);
 
+    }
+
+    @FXML
+    private void handleRowClick(MouseEvent event) {
+
+        if (event.getClickCount() == 2) {
+
+            Book selectedBook = bookTableView.getSelectionModel().getSelectedItem();
+            if (selectedBook != null) {
+ 
+                System.out.println(selectedBook.getBookName());
+                showBookDetails(selectedBook);
+
+            }
+        }
+    }
+
+    private void showBookDetails(Book book) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("bookDetail.fxml"));
+            Parent root = loader.load();
+
+            DetailController controller = loader.getController();
+
+            // Yeni sahneyi göster
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Kitap Detayları");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

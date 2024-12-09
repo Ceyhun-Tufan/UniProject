@@ -1,6 +1,9 @@
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -8,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import java.awt.*;
 import java.net.URI;
@@ -18,6 +22,9 @@ import CrudHelper.crudHandler;
 import TxtHandler.Book;
 
 public class Controller {
+
+    @FXML
+    private Button adminLoginButton;
 
     @FXML
     private Button mybutton;
@@ -129,6 +136,22 @@ public class Controller {
 
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+    }
+
+    @FXML
+    void adminLoginButtonClicked(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("adminLogin.fxml"));
+            Parent adminLogin = loader.load();
+            
+            Stage stage = new Stage();
+            stage.setScene(new Scene(adminLogin));
+            stage.setTitle("Admin Login");
+            stage.show();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

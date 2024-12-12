@@ -1,8 +1,3 @@
-import TxtHandler.TxtDatabaseHandler;
-import TxtHandler.Book;
-import java.util.ArrayList;
-import CrudHelper.crudHandler;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,6 +11,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("./gui.fxml"));
+        primaryStage.setMinHeight(600);
+        primaryStage.setMinWidth(800);
+
         primaryStage.setTitle("Veri Yapilari");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

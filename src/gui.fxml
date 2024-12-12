@@ -33,6 +33,7 @@
 -->
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.TableColumn?>
@@ -50,8 +51,7 @@
     </MenuBar>
     <AnchorPane fx:id="mainPane" maxHeight="-1.0" maxWidth="-1.0" prefHeight="461.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
          <children>
-            <Button fx:id="mybutton" layoutX="80.0" layoutY="207.0" mnemonicParsing="false" onMouseClicked="#addBookName" text="Button" />
-            <TextField fx:id="mytext" layoutX="31.0" layoutY="163.0" onKeyTyped="#handleSearchingEvent" />
+            <TextField fx:id="mytext" layoutX="32.0" layoutY="164.0" onKeyTyped="#handleSearchingEvent" />
             <TableView fx:id="bookTableView" layoutX="312.0" layoutY="11.0" onMouseClicked="#handleRowClick" prefHeight="353.0" prefWidth="409.0" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="216.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="11.0">
               <columns>
                 <TableColumn fx:id="namecol" prefWidth="75.0" text="İsim" />
@@ -65,7 +65,8 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <Button fx:id="adminLoginButton" contentDisplay="CENTER" layoutX="11.0" layoutY="715.0" mnemonicParsing="false" onMouseClicked="#adminLoginButtonClicked" prefHeight="25.0" prefWidth="190.0" text="Admin Panel" />
+            <Button fx:id="adminLoginButton" contentDisplay="CENTER" layoutX="11.0" layoutY="715.0" mnemonicParsing="false" onMouseClicked="#adminLoginButtonClicked" prefHeight="25.0" prefWidth="190.0" text="Admin Panel" AnchorPane.bottomAnchor="35.0" />
+            <Label layoutX="74.0" layoutY="134.0" text="Kitap Arama" />
          </children></AnchorPane>
   </children>
 </VBox>

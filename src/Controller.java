@@ -27,9 +27,6 @@ public class Controller {
     private Button adminLoginButton;
 
     @FXML
-    private Button mybutton;
-
-    @FXML
     private TextField mytext;
 
     @FXML
@@ -53,8 +50,8 @@ public class Controller {
     @FXML
     private TableColumn<Book, Integer> stockcol;
 
-    private final crudHandler crud = new crudHandler();
-    private ArrayList<Book> books = crud.listBooks();
+    private final crudHandler crud = crudHandler.getInstance();
+    private ArrayList<Book> books = crud.listCachedBooks();
     private ObservableList<Book> observableBooks;
 
     @FXML
@@ -78,10 +75,6 @@ public class Controller {
         syncBookTable();
     }
 
-    @FXML
-    private void addBookName(MouseEvent event) {
-
-    }
 
     @FXML
     private void handleSearchingEvent(KeyEvent event) {
@@ -145,10 +138,25 @@ public class Controller {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("adminLogin.fxml"));
             Parent adminLogin = loader.load();
             
+            adminLoginController loginController = loader.getController();
+            loginController.setParentController(this);
+
+            // bu controller in amaci
+            // admin page ile burasi arasinda baglanti kurup tableviewlar arasinda senkronize kurmak
+            // biraz tuhaf duruyor ama buldugum en iyi yontem bu
+            // farkli yontemler genelde cok masrafli
+
+
             Stage stage = new Stage();
+            stage.centerOnScreen();
+            stage.setAlwaysOnTop(true);
+            stage.setResizable(false);
             stage.setScene(new Scene(adminLogin));
             stage.setTitle("Admin Login");
             stage.show();
+            System.out.println(stage.getHeight());
+            System.out.println(stage.getWidth());
+
             
         } catch (Exception e) {
             e.printStackTrace();
@@ -156,9 +164,10 @@ public class Controller {
     }
 
     public void syncBookTable() {
-        books = crud.listBooks();
+        books = crud.listCachedBooks();
         observableBooks = FXCollections.observableArrayList(books);
         bookTableView.setItems(observableBooks);
     }
+
 
 }

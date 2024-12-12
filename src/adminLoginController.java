@@ -22,10 +22,9 @@ public class adminLoginController {
     @FXML
     private Button loginButton;
 
-    private static boolean loggedIn = false;
     private String id = "123";
     private String password = "deneme";
-
+    private Controller parentController;
     @FXML
     private void loginPressed(MouseEvent event) {
 
@@ -47,17 +46,19 @@ public class adminLoginController {
 
         try {
 
-
-
             FXMLLoader loader = new FXMLLoader(getClass().getResource("adminPage.fxml"));
             Parent adminPage = loader.load();
             
+            adminPageController adminController = loader.getController();
+            adminController.setParentController(parentController);
+
             Stage stage = new Stage();
             stage.setScene(new Scene(adminPage));
             stage.setTitle("Admin Panel");
+            stage.setMinHeight(600);
+            stage.setMinWidth(800);
+    
             stage.show();
-
-            loggedIn = true;
 
             Stage currentStage = (Stage) loginButton.getScene().getWindow();
             currentStage.close();
@@ -68,6 +69,11 @@ public class adminLoginController {
             e.printStackTrace();
         }
 
+    }
+
+
+    public void setParentController(Controller controller){
+        parentController = controller;
     }
 
 }

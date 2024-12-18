@@ -45,14 +45,14 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="adminPageController">
   <children>
-    <MenuBar VBox.vgrow="NEVER">
+    <MenuBar>
       <menus>
         <Menu mnemonicParsing="false" text="Admin Panel" />
       </menus>
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
-            <TableView fx:id="bookTableView" layoutX="211.0" layoutY="10.0" onMouseClicked="#handleRowClick" prefHeight="753.0" prefWidth="1056.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="211.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="10.0">
+            <TableView fx:id="bookTableView" layoutX="769.0" layoutY="87.0" maxHeight="676.0" maxWidth="608.0" onMouseClicked="#handleRowClick" prefHeight="676.0" prefWidth="608.0" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="87.0">
               <columns>
                 <TableColumn fx:id="namecol" prefWidth="75.0" text="İsim" />
                 <TableColumn fx:id="writercol" prefWidth="75.0" text="Yazar" />
@@ -65,29 +65,21 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <TextField fx:id="mytext" layoutX="36.0" layoutY="68.0" onKeyTyped="#handleSearchingEvent" />
-            <Label layoutX="62.0" layoutY="32.0" text="Kitap Arama">
-               <font>
-                  <Font size="18.0" />
-               </font></Label>
-            <Label layoutX="59.0" layoutY="127.0" text="Kitap Ekleme">
+            <TextField fx:id="mytext" layoutX="884.0" layoutY="48.0" maxHeight="40.0" maxWidth="159.0" onKeyTyped="#handleSearchingEvent" prefHeight="25.0" prefWidth="159.0" AnchorPane.rightAnchor="237.0" AnchorPane.topAnchor="48.0" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="914.0" layoutY="14.0" text="Kitap Arama" AnchorPane.rightAnchor="268.0" AnchorPane.topAnchor="14.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="100.0" layoutY="173.0" text="İsim" />
-            <TextField fx:id="nametext" layoutX="36.0" layoutY="203.0" />
-            <Label layoutX="96.0" layoutY="238.0" text="Yazar" />
-            <TextField fx:id="writertext" layoutX="36.0" layoutY="266.0" />
-            <Label layoutX="104.0" layoutY="313.0" text="Tür" />
-            <TextField fx:id="genretext" layoutX="37.0" layoutY="337.0" />
-            <Label layoutX="105.0" layoutY="385.0" text="Yıl" />
-            <TextField fx:id="yeartext" layoutX="36.0" layoutY="412.0" />
-            <Label layoutX="98.0" layoutY="459.0" text="Sayfa" />
-            <TextField fx:id="pagetext" layoutX="36.0" layoutY="485.0" />
-            <Label layoutX="100.0" layoutY="533.0" text="Adet" />
-            <TextField fx:id="stocktext" layoutX="38.0" layoutY="562.0" />
-            <Button fx:id="addButton" layoutX="59.0" layoutY="623.0" mnemonicParsing="false" onMouseClicked="#handleAddButtonClick" prefHeight="25.0" prefWidth="103.0" text="Ekle" />
+            <Button layoutX="551.0" layoutY="187.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Ekle" AnchorPane.rightAnchor="647.0" AnchorPane.topAnchor="187.0" />
+            <Button layoutX="551.0" layoutY="227.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Değiştir" AnchorPane.rightAnchor="647.0" AnchorPane.topAnchor="227.0" />
+            <Button layoutX="551.0" layoutY="267.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Sil" AnchorPane.rightAnchor="647.0" AnchorPane.topAnchor="267.0" />
+            <TextField fx:id="nametext" layoutX="242.0" layoutY="174.0" />
+            <TextField fx:id="writertext" layoutX="242.0" layoutY="214.0" />
+            <TextField fx:id="genretext" layoutX="242.0" layoutY="259.0" />
+            <TextField fx:id="yeartext" layoutX="242.0" layoutY="299.0" />
+            <TextField fx:id="pagetext" layoutX="242.0" layoutY="345.0" />
+            <TextField fx:id="stocktext" layoutX="242.0" layoutY="385.0" />
       </children>
     </AnchorPane>
   </children>

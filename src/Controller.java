@@ -124,7 +124,7 @@ public class Controller {
                 desktop.browse(new URI(url));
 
             } else {
-                System.out.println("olmadi yar");
+                System.out.println("Patladik");
             }
 
         } catch (Exception ex) {

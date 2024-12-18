@@ -15,21 +15,6 @@ import javafx.scene.input.MouseEvent;
 
 public class adminPageController {
 
-    // ekleme editleme kismi
-    @FXML
-    private Button addButton;
-    @FXML
-    private TextField genretext;
-    @FXML
-    private TextField nametext;
-    @FXML
-    private TextField pagetext;
-    @FXML
-    private TextField stocktext;
-    @FXML
-    private TextField writertext;
-    @FXML
-    private TextField yeartext;
 
     @FXML
     private TextField mytext;
@@ -73,25 +58,7 @@ public class adminPageController {
         loadTableData();
     }
 
-    @FXML
-    void handleAddButtonClick(MouseEvent event) {
 
-        try {
-
-            crud.createBook(nametext.getText(),
-                    writertext.getText(),
-                    genretext.getText(),
-                    Integer.parseInt(pagetext.getText()),
-                    Integer.parseInt(yeartext.getText()),
-                    Integer.parseInt(stocktext.getText()));
-
-            syncBookTable();
-            parentController.syncBookTable();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
 
     @FXML
     private void handleSearchingEvent(KeyEvent event) {

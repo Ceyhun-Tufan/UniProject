@@ -55,8 +55,8 @@ public class adminLoginController {
             Stage stage = new Stage();
             stage.setScene(new Scene(adminPage));
             stage.setTitle("Admin Panel");
-            stage.setMinHeight(600);
-            stage.setMinWidth(800);
+            stage.setMinHeight(800);
+            stage.setMinWidth(1200);
     
             stage.show();
 

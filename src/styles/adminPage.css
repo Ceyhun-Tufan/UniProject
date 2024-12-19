@@ -1,7 +1,7 @@
 /* General Styles */
 .root {
     -fx-background-color: #1e2124;
-    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-family: "Roboto Mono", sans-serif;
     -fx-font-size: 14px;
     -fx-text-fill: #ffffff !important; /* Force white text for all elements */
 }
@@ -15,6 +15,12 @@
     -fx-border-color: transparent;
 }
 
+
+.deleteButton{
+    -fx-background-color: red;
+
+}
+
 .button:hover {
     -fx-background-color: #424549;
 }
@@ -23,11 +29,41 @@
     -fx-background-color: #36393e;
 }
 
+.split-pane:horizontal > .split-pane-divider {
+    -fx-background-color: transparent;
+ }
+ .split-pane:vertical > .split-pane-divider {
+    -fx-background-color: transparent;
+ }
+
 
 
 .label {
-    -fx-text-fill: #ffffff !important; /* Force white text for contrast */
+    -fx-text-fill: #ffffff ; /* Force white text for contrast */
 }
+
+.alert{
+    -fx-text-fill: red !important; /* Force white text for contrast */
+
+}
+
+
+
+.tab-pane:top *.tab-header-background {
+
+    /* this is area on which tabs are placed */
+  
+    -fx-background-color: transparent ;
+  
+}
+
+.tab-pane:top *.tab{
+    /* -fx-background-color: transparent ; */
+    -fx-text-base-color: #ffffff; /* White text for contrast */
+    -fx-background-color: #424549;
+    -fx-font-weight: bold;
+}
+
 
 
 /* TextField Styles */

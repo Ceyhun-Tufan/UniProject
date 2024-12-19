@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -16,8 +17,33 @@ import javafx.scene.input.MouseEvent;
 
 public class adminPageController {
 
+    // kitap ekleme sayfasi 
+    @FXML 
+    private Label badInputAlert;
+
     @FXML
     private Button addBookButton;
+
+    @FXML
+    private TextField addNameText;
+
+    @FXML
+    private TextField addGenreText;
+
+    @FXML
+    private TextField addPageText;
+
+    @FXML
+    private TextField addStockText;
+
+    @FXML
+    private TextField addWriterText;
+
+    @FXML
+    private TextField addYearText;
+
+    // kitap silme degistirme sayfasi 
+
     @FXML
     private Button deleteBookButton;
     @FXML
@@ -46,6 +72,8 @@ public class adminPageController {
 
     @FXML
     private TableColumn<Book, Integer> stockcol;
+
+    private Book selectedBook; 
 
     private final crudHandler crud = crudHandler.getInstance();
     private ArrayList<Book> books = crud.listCachedBooks();
@@ -89,61 +117,132 @@ public class adminPageController {
 
         if (event.getClickCount() == 2) {
 
-            Book selectedBook = bookTableView.getSelectionModel().getSelectedItem();
-            if (selectedBook != null) {
-
-                System.out.println(selectedBook.getBookName());
-                // after double clicking
-
-            }
+            this.selectedBook = bookTableView.getSelectionModel().getSelectedItem();
+            System.out.println(selectedBook);
         }
     }
 
     @FXML
     void handleAddButtonEvent(MouseEvent event) {
-        // bookAddPage i acacak
-        // System.out.println("deneme");
-        // try {
-        // FXMLLoader loader = new
-        // FXMLLoader(getClass().getResource("bookAddPage.fxml"));
-        // Parent bookAddController = loader.load();
+        String name = addNameText.getText().trim();
+        String genre = addGenreText.getText().trim();
+        String writer = addWriterText.getText().trim();
+        String pageText = addPageText.getText().trim();
+        String stockText = addStockText.getText().trim();
+        String yearText = addYearText.getText().trim();
+    
+        try {
+            int page = Integer.parseInt(pageText);
+            int stock = Integer.parseInt(stockText);
+            int year = Integer.parseInt(yearText);
+    
 
-        // bookAddPageController loginController = loader.getController();
-        // loginController.setParentController(this);
+            Book book = new Book(name, writer, genre, page, year, stock);
+    
+            crud.createBook(book);
+            syncBoth();
 
-        // Stage stage = new Stage();
-        // stage.centerOnScreen();
-        // stage.setAlwaysOnTop(true);
-        // stage.setResizable(false);
-        // stage.setScene(new Scene(bookAddController));
-        // stage.setTitle("Add Book");
-        // stage.show();
-        // System.out.println(stage.getHeight());
-        // System.out.println(stage.getWidth());
-
-        // } catch (Exception e) {
-        // e.printStackTrace();
-        // }
-
+            addNameText.clear();
+            addGenreText.clear();
+            addWriterText.clear();
+            addPageText.clear();
+            addStockText.clear();
+            addYearText.clear();
+        } catch (NumberFormatException e) {
+            System.out.println("Sayfa, stok ve yıl değerleri sayı olmalıdır.");
+        } catch (Exception e) {
+            System.out.println("Bir hata oluştu: " + e.getMessage());
+        }
     }
 
-    @FXML
+
+
+    // TODO: Javafx de yeni textfieldlar olusturup oralara selectedBook degerlerini gir ve degisim varsa crud.updateBook ile degistir
+    // TODO: silme varsa da crud.deleteBook ile sil
+   
+    @FXML   
     void handleDeleteButtonEvent(MouseEvent event) {
         // pop up ile emin misin diye sorup silecek
     }
 
     @FXML
     void handleUpdateButtonEvent(MouseEvent event) {
-        // update sayfasini acacak
+
     }
 
-    public void syncBookTable() {
+
+    // add textleri kontrolleri 
+
+    @FXML
+    void handleAddNameText(KeyEvent event) {
+        validateAddButton();
+    }
+    
+    @FXML
+    void handleAddWriterText(KeyEvent event) {
+        validateAddButton();
+    }
+    
+    @FXML
+    void handleAddGenreText(KeyEvent event) {
+        validateAddButton();
+    }
+    
+    @FXML
+    void handleAddPageText(KeyEvent event) {
+        validateAddButton();
+    }
+    
+    @FXML
+    void handleAddStockText(KeyEvent event) {
+        validateAddButton();
+    }
+    
+    @FXML
+    void handleAddYearText(KeyEvent event) {
+        validateAddButton();
+    }
+    
+    // anlik java threadleri = https://www.youtube.com/shorts/Maad-U9v-pY
+    
+    private void validateAddButton() {
+        boolean isNameValid = !addNameText.getText().trim().isEmpty();
+        boolean isWriterValid = !addWriterText.getText().trim().isEmpty();
+        boolean isGenreValid = !addGenreText.getText().trim().isEmpty();
+    
+        boolean isPageValid = isValidInteger(addPageText.getText().trim(), 1, Integer.MAX_VALUE);
+        boolean isStockValid = isValidInteger(addStockText.getText().trim(), 1, Integer.MAX_VALUE);
+        boolean isYearValid = isValidInteger(addYearText.getText().trim(), -2637, java.time.Year.now().getValue());
+    
+        if(isNameValid && isWriterValid && isGenreValid && isPageValid && isStockValid && isYearValid){
+            badInputAlert.setVisible(false);
+            addBookButton.setDisable(false);
+            addBookButton.setOpacity(1);
+        }else{
+            badInputAlert.setVisible(true);
+            addBookButton.setDisable(true);
+            addBookButton.setOpacity(0.4);
+        }
+        
+    }
+    
+    private boolean isValidInteger(String text, int minValue, int maxValue) {
+        try {
+            int value = Integer.parseInt(text);
+            return value >= minValue && value <= maxValue;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+    
+
+    private void syncBookTable() {
         books = crud.listCachedBooks();
         observableBooks = FXCollections.observableArrayList(books);
         bookTableView.setItems(observableBooks);
     }
 
-    public void syncBoth() {
+    private void syncBoth() {
         syncBookTable();
         parentController.syncBookTable();
     }

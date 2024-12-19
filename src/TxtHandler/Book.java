@@ -6,11 +6,11 @@ public class Book {
     private String book_name;
     private String writer;
     private String genre;
-    private int page;
+    private long page;
     private int written_year;
-    private int count;
+    private long count;
 
-    public Book(String book_name, String writer, String genre, int page, int written_year, int count) {
+    public Book(String book_name, String writer, String genre, long page, int written_year, long count) {
         this.id = id_increment;
         id_increment++;
 
@@ -53,11 +53,11 @@ public class Book {
         this.genre = genre;
     }
 
-    public int getPage() {
+    public long getPage() {
         return page;
     }
 
-    public void setPage(int page) {
+    public void setPage(long page) {
         if (page > 0) { // Sayfa sayısı pozitif olmalı
             this.page = page;
         } else {
@@ -73,11 +73,11 @@ public class Book {
         this.written_year = written_year;
     }
 
-    public int getCount() {
+    public long getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    public void setCount(long count) {
         if (count >= 0) { // Stok sayısı negatif olamaz
             this.count = count;
         } else {

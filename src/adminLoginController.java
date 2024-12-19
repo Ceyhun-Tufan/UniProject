@@ -25,6 +25,7 @@ public class adminLoginController {
     private String id = "123";
     private String password = "deneme";
     private Controller parentController;
+    
     @FXML
     private void loginPressed(MouseEvent event) {
 

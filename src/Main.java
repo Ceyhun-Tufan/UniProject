@@ -15,8 +15,8 @@ public class Main extends Application {
         primaryStage.setMinWidth(800);
 
         primaryStage.setTitle("Veri Yapilari");
-        primaryStage.setScene(new Scene(root));
         primaryStage.setMaximized(true);
+        primaryStage.setScene(new Scene(root));
         primaryStage.getScene().getStylesheets().add(getClass().getResource("./styles/MainPageCss.css").toExternalForm());
         primaryStage.show();
     }

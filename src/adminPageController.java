@@ -13,8 +13,15 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
+
 public class adminPageController {
 
+    @FXML
+    private Button addBookButton;
+    @FXML
+    private Button deleteBookButton;
+    @FXML
+    private Button updateBookButton;
 
     @FXML
     private TextField mytext;
@@ -45,7 +52,6 @@ public class adminPageController {
     private ObservableList<Book> observableBooks;
     private Controller parentController;
 
-
     @FXML
     private void initialize() {
         namecol.setCellValueFactory(new PropertyValueFactory<>("bookName"));
@@ -57,8 +63,6 @@ public class adminPageController {
 
         loadTableData();
     }
-
-
 
     @FXML
     private void handleSearchingEvent(KeyEvent event) {
@@ -95,10 +99,53 @@ public class adminPageController {
         }
     }
 
-    private void syncBookTable() {
+    @FXML
+    void handleAddButtonEvent(MouseEvent event) {
+        // bookAddPage i acacak
+        // System.out.println("deneme");
+        // try {
+        // FXMLLoader loader = new
+        // FXMLLoader(getClass().getResource("bookAddPage.fxml"));
+        // Parent bookAddController = loader.load();
+
+        // bookAddPageController loginController = loader.getController();
+        // loginController.setParentController(this);
+
+        // Stage stage = new Stage();
+        // stage.centerOnScreen();
+        // stage.setAlwaysOnTop(true);
+        // stage.setResizable(false);
+        // stage.setScene(new Scene(bookAddController));
+        // stage.setTitle("Add Book");
+        // stage.show();
+        // System.out.println(stage.getHeight());
+        // System.out.println(stage.getWidth());
+
+        // } catch (Exception e) {
+        // e.printStackTrace();
+        // }
+
+    }
+
+    @FXML
+    void handleDeleteButtonEvent(MouseEvent event) {
+        // pop up ile emin misin diye sorup silecek
+    }
+
+    @FXML
+    void handleUpdateButtonEvent(MouseEvent event) {
+        // update sayfasini acacak
+    }
+
+    public void syncBookTable() {
         books = crud.listCachedBooks();
         observableBooks = FXCollections.observableArrayList(books);
         bookTableView.setItems(observableBooks);
+    }
+
+    public void syncBoth() {
+        syncBookTable();
+        parentController.syncBookTable();
     }
 
     private void loadTableData() {
@@ -110,7 +157,7 @@ public class adminPageController {
         syncBookTable();
     }
 
-    public void setParentController(Controller controller){
+    public void setParentController(Controller controller) {
         parentController = controller;
     }
 }

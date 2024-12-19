@@ -39,7 +39,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="472.0" prefWidth="311.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="adminLoginController">
+<VBox prefHeight="472.0" prefWidth="311.0" stylesheets="@styles/adminLogin.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="adminLoginController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="548.0" prefWidth="887.0" VBox.vgrow="ALWAYS">
          <children>
@@ -55,7 +55,7 @@
             </Label>
             <TextField fx:id="IDText" layoutX="33.0" layoutY="167.0" prefHeight="25.0" prefWidth="245.0" />
             <TextField fx:id="PassText" layoutX="34.0" layoutY="276.0" prefHeight="25.0" prefWidth="245.0" />
-            <Button fx:id="loginButton" layoutX="121.0" layoutY="354.0" mnemonicParsing="false" onMouseClicked="#loginPressed" prefHeight="25.0" prefWidth="72.0" text="Login" />
+            <Button fx:id="loginButton" layoutX="106.0" layoutY="354.0" mnemonicParsing="false" onMouseClicked="#loginPressed" prefHeight="40.0" prefWidth="102.0" text="Login" />
             <Label fx:id="adminLoginAlertLabel" alignment="CENTER" layoutX="21.0" layoutY="424.0" prefHeight="17.0" prefWidth="272.0" text="Wrong ID or Password !" textFill="RED" visible="false" />
          </children></AnchorPane>
   </children>

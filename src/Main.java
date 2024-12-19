@@ -16,6 +16,8 @@ public class Main extends Application {
 
         primaryStage.setTitle("Veri Yapilari");
         primaryStage.setScene(new Scene(root));
+        primaryStage.setMaximized(true);
+        primaryStage.getScene().getStylesheets().add(getClass().getResource("./styles/MainPageCss.css").toExternalForm());
         primaryStage.show();
     }
 
@@ -24,32 +26,3 @@ public class Main extends Application {
         launch(args);
     }
 }
-
-
-// stok ekle sil 
-// aynı kitaptan varsa count arttırma
-// kitap listeleme 
-// yazarlara göre kitap listeleme 
-// türe göre kitap listeleme
-
-// public class Main {
-
-//     public static void main(String[] args) {
-//         crudHandler crud = new crudHandler();
-
-//         System.out.println();
-//         System.out.println();
-
-
-//         crud.createBook("Evet isyan", "Ismet Ozel", "Poem", 0, 1, 1);
-//         Book deneme = crud.findByName("Evet isyan");
-
-//         System.out.println(deneme.getBookName());
-
-
-
-        
-//     }
-
-
-// }

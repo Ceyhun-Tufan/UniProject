@@ -12,7 +12,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
 import java.awt.*;
 import java.net.URI;
 import java.net.URLEncoder;
@@ -114,9 +113,8 @@ public class Controller {
     // d&r da kitabi aramasi icin.
     private void showBookDetails(Book book) {
         try {
-
-            String url = "https://www.dr.com.tr/search?q=" + URLEncoder.encode(book.getBookName(), "UTF8")
-                    + "&redirect=search";
+            String url = "https://tr.wikipedia.org/wiki/" + URLEncoder.encode(book.getBookName(), "UTF8");
+            url = url.replace("+", "%20");
             Desktop desktop = Desktop.getDesktop();
 
             if (desktop.isSupported(Desktop.Action.BROWSE)) {
@@ -124,7 +122,7 @@ public class Controller {
                 desktop.browse(new URI(url));
 
             } else {
-                System.out.println("Patladik");
+                System.out.println("Hocam browser yok. nası yok");
             }
 
         } catch (Exception ex) {
@@ -152,6 +150,7 @@ public class Controller {
             stage.setAlwaysOnTop(true);
             stage.setResizable(false);
             stage.setScene(new Scene(adminLogin));
+            stage.getScene().getStylesheets().add(getClass().getResource("./styles/adminLogin.css").toExternalForm());
             stage.setTitle("Admin Login");
             stage.show();
             System.out.println(stage.getHeight());

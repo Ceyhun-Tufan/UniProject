@@ -1,0 +1,80 @@
+/* General Styles */
+.root {
+    -fx-background-color: #1e2124;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff !important; /* Force white text for all elements */
+}
+
+/* Button Styles */
+.button {
+    -fx-background-color: #7289da;
+    -fx-text-fill: #ffffff; /* White text for contrast */
+    -fx-padding: 10 20;
+    -fx-background-radius: 5;
+    -fx-border-color: transparent;
+}
+
+.button:hover {
+    -fx-background-color: #424549;
+}
+
+.button:pressed {
+    -fx-background-color: #36393e;
+}
+
+
+
+.label {
+    -fx-text-fill: #ffffff !important; /* Force white text for contrast */
+}
+
+
+/* TextField Styles */
+.text-field {
+    -fx-background-color: #282b30;
+    -fx-text-fill: #ffffff !important; /* Force white text for contrast */
+    -fx-prompt-text-fill: #b0b0b0; /* Lighter gray for prompt text */
+    -fx-border-color: #424549;
+    -fx-border-radius: 5;
+    -fx-padding: 5 10;
+}
+
+.text-field:focused {
+    -fx-border-color: #7289da;
+    -fx-background-color: #36393e;
+}
+
+/* TableView Styles */
+.table-view {
+    -fx-background-color: #282b30;
+    -fx-border-color: #424549;
+    -fx-border-radius: 5;
+    -fx-table-cell-border-color: #36393e;
+    -fx-table-header-border-color: #424549;
+}
+
+.table-view .column-header {
+    -fx-background-color: #36393e;
+    -fx-text-fill: #ffffff !important; /* Force white text for contrast */
+}
+
+.table-view .cell {
+    -fx-background-color: #282b30;
+    -fx-text-fill: #ffffff !important; /* Force white text for contrast */
+}
+
+.table-view .cell:selected {
+    -fx-background-color: #7289da;
+    -fx-text-fill: #ffffff !important; /* Force white text for contrast */
+}
+
+/* ScrollPane Styles */
+.scroll-pane {
+    -fx-background: #1e2124;
+    -fx-border-color: #424549;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: #1e2124;
+}

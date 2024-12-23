@@ -7,15 +7,15 @@ import java.util.ArrayList;
 public class crudHandler {
 
     private static crudHandler instance; // Singleton yapi 
-    private ArrayList<Book> book_list;
+    public ArrayList<Book> book_list;
     private final TxtDatabaseHandler db;
 
 
     private crudHandler() {
-        this.book_list = new ArrayList<>();
+        book_list = new ArrayList<>();
         this.db = new TxtDatabaseHandler();
         this.db.setPath("database.kitap");
-        this.book_list = db.fetchData();
+        book_list = db.fetchData();
     }
 
     // cok anlamiyorum burayi bana da sorma
@@ -51,16 +51,12 @@ public class crudHandler {
     }
 
 
-    public void updateBook(Book book){ //make this function to find the book and update it
+    public void updateBook(Book book,String book_name, String writer, String genre, long page, int written_year, long count){ //make this function to find the book and update it
 
+        Book newBook = new Book(book.getId(),book_name, writer, genre, page, written_year, count);
 
-        try {
-            book_list.set(book.getId()-1, book);
-            
-        } catch (Exception e) {
-            return;  
-        }
-        
+        book_list.set(book.getId()-1, newBook);
+        System.out.println(book_list.get(book.getId()-1));
         syncDb();
 
     }

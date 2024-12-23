@@ -93,7 +93,7 @@ public class adminPageController {
     private Book selectedBook;
 
     private final crudHandler crud = crudHandler.getInstance();
-    private ArrayList<Book> books = crud.listCachedBooks();
+    private ArrayList<Book> books = crud.book_list;
     private ObservableList<Book> observableBooks;
     private Controller parentController;
 
@@ -189,17 +189,8 @@ public class adminPageController {
                 int stock = Integer.parseInt(stockText);
                 int year = Integer.parseInt(yearText);
 
-                Book book = crud.findBook(selectedBook);
-
-                book.setBookName(name);
-                book.setWriter(writer);
-                book.setGenre(genre);
-                book.setPage(page);
-                book.setWrittenYear(year);
-                book.setCount(stock);
-
-                crud.updateBook(book);
-                syncBookTable();
+                crud.updateBook(selectedBook,name,writer,genre,page,year,stock);
+                selectedBook = null;
                 syncBoth();
 
             } catch (NumberFormatException e) {

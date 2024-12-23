@@ -1,5 +1,6 @@
 package TxtHandler;
 
+
 public class Book {
     public static int id_increment = 1; // Tüm kitapları unique şekilde id ilemek için
     private final int id;
@@ -21,6 +22,21 @@ public class Book {
         this.count = count;
         this.written_year = written_year;
     }
+
+
+
+    public Book(int id,String book_name, String writer, String genre, long page, int written_year, long count) {
+        this.id = id;
+
+        this.book_name = book_name;
+        this.genre = genre;
+        this.writer = writer;
+        this.page = page;
+        this.count = count;
+        this.written_year = written_year;
+    }
+    
+
 
     // Getter ve Setterlar
     public int getId() {

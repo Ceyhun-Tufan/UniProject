@@ -38,51 +38,44 @@ public class crudHandler {
         syncDb();
     }
 
-    public Book findByName(String book_name) {
+    public Book findBook(Book book) {
         if (book_list.isEmpty()) {
             System.out.println("Kitap listesi boş");
             return null;
-        }
-
-        for (Book book : book_list) {
-            if (book.getBookName().equals(book_name)) {
-                return book;
-            }
+        }else if(book_list.contains(book)){
+            return book_list.get(book.getId()-1);
         }
 
         System.out.println("Bu ada sahip kitap bulunamadı");
         return null;
     }
 
-    public boolean updateBook(String book_name, String new_writer, String new_genre, long new_page, int new_written_year, long new_count) {
-        Book book = findByName(book_name);
 
-        if (book != null) {
-            book.setWriter(new_writer);
-            book.setGenre(new_genre);
-            book.setPage(new_page);
-            book.setWrittenYear(new_written_year);
-            book.setCount(new_count);
-            System.out.println("Kitap başarıyla güncellendi: " + book);
-            syncDb();
-            return true;
+    public void updateBook(Book book){ //make this function to find the book and update it
+
+
+        try {
+            book_list.set(book.getId()-1, book);
+            
+        } catch (Exception e) {
+            return;  
         }
-        return false;
+        
+        syncDb();
+
     }
 
-    public boolean deleteBook(String book_name) {
-        Book book = findByName(book_name);
 
-        if (book != null) {
-            book_list.remove(book);
-            System.out.println("Kitap başarıyla silindi: " + book);
-            syncDb();
-            return true;
+    public void deleteBook(Book book) {
+        if(!book_list.contains(book)){
+            return;
         }
 
-        System.out.println("Silinecek kitap bulunamadı.");
-        return false;
+        book_list.remove(book);
+        System.out.println("Kitap başarıyla silindi: " + book);
+        syncDb();
     }
+
 
     public ArrayList<Book> listCachedBooks() {
         if (book_list.isEmpty()) {

@@ -14,11 +14,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
-
 public class adminPageController {
 
-    // kitap ekleme sayfasi 
-    @FXML 
+    // kitap ekleme sayfasi
+    @FXML
     private Label badInputAlert;
 
     @FXML
@@ -42,7 +41,25 @@ public class adminPageController {
     @FXML
     private TextField addYearText;
 
-    // kitap silme degistirme sayfasi 
+    // kitap silme degistirme sayfasi
+
+    @FXML
+    private TextField updateGenre;
+
+    @FXML
+    private TextField updateName;
+
+    @FXML
+    private TextField updatePage;
+
+    @FXML
+    private TextField updateStock;
+
+    @FXML
+    private TextField updateWriter;
+
+    @FXML
+    private TextField updateYear;
 
     @FXML
     private Button deleteBookButton;
@@ -73,7 +90,7 @@ public class adminPageController {
     @FXML
     private TableColumn<Book, Integer> stockcol;
 
-    private Book selectedBook; 
+    private Book selectedBook;
 
     private final crudHandler crud = crudHandler.getInstance();
     private ArrayList<Book> books = crud.listCachedBooks();
@@ -117,10 +134,85 @@ public class adminPageController {
 
         if (event.getClickCount() == 2) {
 
-            this.selectedBook = bookTableView.getSelectionModel().getSelectedItem();
+            selectedBook = bookTableView.getSelectionModel().getSelectedItem();
+            if (selectedBook != null) {
+                updateName.setText(selectedBook.getBookName());
+                updateGenre.setText(selectedBook.getGenre());
+                updateWriter.setText(selectedBook.getWriter());
+                updatePage.setText(String.valueOf(selectedBook.getPage()));
+                updateStock.setText(String.valueOf(selectedBook.getCount()));
+                updateYear.setText(String.valueOf(selectedBook.getWrittenYear()));
+            }
             System.out.println(selectedBook);
+        }else{
+            this.selectedBook = null;
+            System.out.println(selectedBook);
+
         }
     }
+
+    // TODO: Javafx de yeni textfieldlar olusturup oralara selectedBook degerlerini
+    // gir ve degisim varsa crud.updateBook ile degistir
+    @FXML
+    void handleDeleteButtonEvent(MouseEvent event) {
+        if (selectedBook != null) {
+            // Confirm deletion
+            boolean confirmed = confirmDeletion();
+            if (confirmed) {
+                crud.deleteBook(selectedBook);
+                syncBoth();
+                selectedBook = null;
+            }
+        } else {
+
+        }
+    }
+
+    private boolean confirmDeletion() {
+        // Implement a confirmation dialog here
+        // For simplicity, we'll just return true
+        return true;
+    }
+
+    @FXML
+    void handleUpdateButtonEvent(MouseEvent event) {
+        if (selectedBook != null) {
+            String name = updateName.getText().trim();
+            String genre = updateGenre.getText().trim();
+            String writer = updateWriter.getText().trim();
+            String pageText = updatePage.getText().trim();
+            String stockText = updateStock.getText().trim();
+            String yearText = updateYear.getText().trim();
+
+            try {
+                int page = Integer.parseInt(pageText);
+                int stock = Integer.parseInt(stockText);
+                int year = Integer.parseInt(yearText);
+
+                Book book = crud.findBook(selectedBook);
+
+                book.setBookName(name);
+                book.setWriter(writer);
+                book.setGenre(genre);
+                book.setPage(page);
+                book.setWrittenYear(year);
+                book.setCount(stock);
+
+                crud.updateBook(book);
+                syncBookTable();
+                syncBoth();
+
+            } catch (NumberFormatException e) {
+                System.out.println("Page, stock, and year values must be numbers.");
+            } catch (Exception e) {
+                System.out.println("An error occurred: " + e.getMessage());
+            }
+        } else {
+            System.out.println("No book selected for update.");
+        }
+    }
+
+    // add textleri kontrolleri
 
     @FXML
     void handleAddButtonEvent(MouseEvent event) {
@@ -130,15 +222,14 @@ public class adminPageController {
         String pageText = addPageText.getText().trim();
         String stockText = addStockText.getText().trim();
         String yearText = addYearText.getText().trim();
-    
+
         try {
             int page = Integer.parseInt(pageText);
             int stock = Integer.parseInt(stockText);
             int year = Integer.parseInt(yearText);
-    
 
             Book book = new Book(name, writer, genre, page, year, stock);
-    
+
             crud.createBook(book);
             syncBoth();
 
@@ -155,77 +246,59 @@ public class adminPageController {
         }
     }
 
-
-
-    // TODO: Javafx de yeni textfieldlar olusturup oralara selectedBook degerlerini gir ve degisim varsa crud.updateBook ile degistir
-    // TODO: silme varsa da crud.deleteBook ile sil
-   
-    @FXML   
-    void handleDeleteButtonEvent(MouseEvent event) {
-        // pop up ile emin misin diye sorup silecek
-    }
-
-    @FXML
-    void handleUpdateButtonEvent(MouseEvent event) {
-
-    }
-
-
-    // add textleri kontrolleri 
-
     @FXML
     void handleAddNameText(KeyEvent event) {
         validateAddButton();
     }
-    
+
     @FXML
     void handleAddWriterText(KeyEvent event) {
         validateAddButton();
     }
-    
+
     @FXML
     void handleAddGenreText(KeyEvent event) {
         validateAddButton();
     }
-    
+
     @FXML
     void handleAddPageText(KeyEvent event) {
         validateAddButton();
     }
-    
+
     @FXML
     void handleAddStockText(KeyEvent event) {
         validateAddButton();
     }
-    
+
     @FXML
     void handleAddYearText(KeyEvent event) {
         validateAddButton();
     }
-    
+
     // anlik java threadleri = https://www.youtube.com/shorts/Maad-U9v-pY
-    
+
     private void validateAddButton() {
         boolean isNameValid = !addNameText.getText().trim().isEmpty();
         boolean isWriterValid = !addWriterText.getText().trim().isEmpty();
         boolean isGenreValid = !addGenreText.getText().trim().isEmpty();
-    
+
         boolean isPageValid = isValidInteger(addPageText.getText().trim(), 1, Integer.MAX_VALUE);
         boolean isStockValid = isValidInteger(addStockText.getText().trim(), 1, Integer.MAX_VALUE);
         boolean isYearValid = isValidInteger(addYearText.getText().trim(), -2637, java.time.Year.now().getValue());
-    
-        if(isNameValid && isWriterValid && isGenreValid && isPageValid && isStockValid && isYearValid){
+
+        if (isNameValid && isWriterValid && isGenreValid && isPageValid && isStockValid && isYearValid) {
             badInputAlert.setVisible(false);
             addBookButton.setDisable(false);
             addBookButton.setOpacity(1);
-        }else{
+        } else {
             badInputAlert.setVisible(true);
             addBookButton.setDisable(true);
             addBookButton.setOpacity(0.4);
         }
-        
+
     }
-    
+
     private boolean isValidInteger(String text, int minValue, int maxValue) {
         try {
             int value = Integer.parseInt(text);
@@ -234,7 +307,6 @@ public class adminPageController {
             return false;
         }
     }
-    
 
     private void syncBookTable() {
         books = crud.listCachedBooks();

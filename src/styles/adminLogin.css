@@ -25,3 +25,11 @@
 .button:pressed {
     -fx-background-color: #36393e;
 }
+
+.text-field {
+    -fx-background-color: #36393e;
+    -fx-text-fill: #ffffff;
+    -fx-prompt-text-fill: #ffffff;
+    -fx-border-color: transparent;
+    -fx-background-radius: 5;
+}

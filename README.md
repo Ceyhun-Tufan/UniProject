@@ -3,6 +3,10 @@
 ## 📖 Overview  
 The **Bookstore Management System** is a Java-based application designed tomanage bookstore's operations, including managing books, customers, and sales. Instead of a traditional database, this system uses a **text file-based storage system**, implemented using a **singleton pattern** for centralized data access.  
 
+![ekran1](https://github.com/user-attachments/assets/86848449-2cb3-4c54-9355-8db9db6e53b9)
+
+![ekran2](https://github.com/user-attachments/assets/3554b7ea-9b4b-4248-a959-d60267328376)
+
 ## 🚀 Features  
 ✅ Add, update, and delete books 📖    
 ✅ Process sales and generate invoices 💰  

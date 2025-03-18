@@ -14,7 +14,7 @@ public class Main extends Application {
         primaryStage.setMinHeight(600);
         primaryStage.setMinWidth(800);
 
-        primaryStage.setTitle("Veri Yapilari");
+        primaryStage.setTitle("Bookstore Management");
         primaryStage.setMaximized(true);
         primaryStage.setScene(new Scene(root));
         primaryStage.getScene().getStylesheets().add(getClass().getResource("./styles/MainPageCss.css").toExternalForm());

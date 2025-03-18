@@ -142,37 +142,39 @@ public class adminPageController {
                 updatePage.setText(String.valueOf(selectedBook.getPage()));
                 updateStock.setText(String.valueOf(selectedBook.getCount()));
                 updateYear.setText(String.valueOf(selectedBook.getWrittenYear()));
-            }
-            System.out.println(selectedBook);
-        }else{
-            this.selectedBook = null;
-            System.out.println(selectedBook);
-
-        }
-    }
-
-    // TODO: Javafx de yeni textfieldlar olusturup oralara selectedBook degerlerini
-    // gir ve degisim varsa crud.updateBook ile degistir
-    @FXML
-    void handleDeleteButtonEvent(MouseEvent event) {
-        if (selectedBook != null) {
-            // Confirm deletion
-            boolean confirmed = confirmDeletion();
-            if (confirmed) {
-                crud.deleteBook(selectedBook);
-                syncBoth();
-                selectedBook = null;
+                deleteBookButton.setDisable(false);
+                deleteBookButton.setOpacity(1);
+                updateBookButton.setDisable(false);
+                updateBookButton.setOpacity(1);
             }
         } else {
 
+            updateName.clear();
+            updateGenre.clear();
+            updateWriter.clear();
+            updatePage.clear();
+            updateStock.clear();
+            updateYear.clear();
+
+            this.selectedBook = null;
+            deleteBookButton.setDisable(true);
+            deleteBookButton.setOpacity(0.4);
+            updateBookButton.setDisable(true);
+            updateBookButton.setOpacity(0.4);
+
+
         }
     }
 
-    private boolean confirmDeletion() {
-        // Implement a confirmation dialog here
-        // For simplicity, we'll just return true
-        return true;
+    @FXML
+    void handleDeleteButtonEvent(MouseEvent event) {
+        if (selectedBook != null) {
+            crud.deleteBook(selectedBook);
+            syncBoth();
+            selectedBook = null;
+        }
     }
+
 
     @FXML
     void handleUpdateButtonEvent(MouseEvent event) {
@@ -189,17 +191,15 @@ public class adminPageController {
                 int stock = Integer.parseInt(stockText);
                 int year = Integer.parseInt(yearText);
 
-                crud.updateBook(selectedBook,name,writer,genre,page,year,stock);
+                crud.updateBook(selectedBook, name, writer, genre, page, year, stock);
                 selectedBook = null;
                 syncBoth();
 
             } catch (NumberFormatException e) {
-                System.out.println("Page, stock, and year values must be numbers.");
+                // not handling much
             } catch (Exception e) {
-                System.out.println("An error occurred: " + e.getMessage());
+                // not handling much
             }
-        } else {
-            System.out.println("No book selected for update.");
         }
     }
 
@@ -231,9 +231,10 @@ public class adminPageController {
             addStockText.clear();
             addYearText.clear();
         } catch (NumberFormatException e) {
-            System.out.println("Sayfa, stok ve yıl değerleri sayı olmalıdır.");
+                // not handling much
         } catch (Exception e) {
-            System.out.println("Bir hata oluştu: " + e.getMessage());
+                // not handling much
+        
         }
     }
 

@@ -77,7 +77,7 @@ public class Book {
         if (page > 0) { // Sayfa sayısı pozitif olmalı
             this.page = page;
         } else {
-            System.out.println("Page count cannot be negative or zero!");
+            // 0 dan buyuk olmali
         }
     }
 
@@ -97,7 +97,7 @@ public class Book {
         if (count >= 0) { // Stok sayısı negatif olamaz
             this.count = count;
         } else {
-            System.out.println("Count cannot be negative!");
+                // not handling much
         }
     }
 

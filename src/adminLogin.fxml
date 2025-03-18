@@ -43,18 +43,18 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="548.0" prefWidth="887.0" VBox.vgrow="ALWAYS">
          <children>
-            <Label alignment="CENTER" layoutX="120.0" layoutY="109.0" prefHeight="40.0" prefWidth="72.0" text="Admin ID">
+            <Label alignment="CENTER" layoutX="120.0" layoutY="112.0" prefHeight="40.0" prefWidth="72.0" text="Admin ID">
                <font>
                   <Font name="Malgun Gothic Bold" size="12.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="120.0" layoutY="216.0" prefHeight="40.0" prefWidth="72.0" text="Password">
+            <Label alignment="CENTER" layoutX="120.0" layoutY="225.0" prefHeight="40.0" prefWidth="72.0" text="Password">
                <font>
                   <Font name="Malgun Gothic Bold" size="12.0" />
                </font>
             </Label>
-            <TextField fx:id="IDText" layoutX="33.0" layoutY="167.0" prefHeight="25.0" prefWidth="245.0" styleClass="button" />
-            <TextField fx:id="PassText" layoutX="34.0" layoutY="276.0" prefHeight="25.0" prefWidth="245.0" styleClass="button" />
+            <TextField fx:id="IDText" layoutX="33.0" layoutY="167.0" prefHeight="25.0" prefWidth="245.0" />
+            <TextField fx:id="PassText" layoutX="34.0" layoutY="276.0" prefHeight="25.0" prefWidth="245.0" />
             <Button fx:id="loginButton" layoutX="106.0" layoutY="354.0" mnemonicParsing="false" onMouseClicked="#loginPressed" prefHeight="40.0" prefWidth="102.0" text="Login" />
             <Label fx:id="adminLoginAlertLabel" alignment="CENTER" layoutX="21.0" layoutY="424.0" prefHeight="17.0" prefWidth="272.0" text="Wrong ID or Password !" textFill="RED" visible="false" />
          </children></AnchorPane>

@@ -88,7 +88,7 @@
                               <TextField fx:id="updateGenre" layoutX="65.0" layoutY="320.0" maxHeight="40.0" maxWidth="175.0" onKeyTyped="#handleSearchingEvent" prefHeight="32.0" prefWidth="170.0" promptText="Tür" />
                               <TextField fx:id="updateYear" layoutX="66.0" layoutY="370.0" maxHeight="40.0" maxWidth="175.0" onKeyTyped="#handleSearchingEvent" prefHeight="32.0" prefWidth="170.0" promptText="Yıl" />
                               <TextField fx:id="updatePage" layoutX="65.0" layoutY="420.0" maxHeight="40.0" maxWidth="175.0" onKeyTyped="#handleSearchingEvent" prefHeight="32.0" prefWidth="170.0" promptText="Sayfa Sayısı" />
-                              <TextField fx:id="updateStock" layoutX="65.0" layoutY="470.0" maxHeight="40.0" maxWidth="175.0" onKeyTyped="#handleSearchingEvent" prefHeight="32.0" prefWidth="170.0" promptText="Stock" />
+                              <TextField fx:id="updateStock" layoutX="65.0" layoutY="470.0" maxHeight="40.0" maxWidth="175.0" onKeyTyped="#handleSearchingEvent" prefHeight="32.0" prefWidth="170.0" promptText="Stok" />
                            </children>
                         </AnchorPane>
                   </content>
